@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Services Page Layout
+   ========================================================================== */
+
+.services-page {
+  width: min(1180px, 90%);
+  margin: 0 auto;
+  padding: 70px 0 110px;
+}
+
+/* Page Header */
+.page-heading {
+  max-width: 700px;
+  padding-bottom: 65px;
+}
+
+.page-heading h1 {
+  color: var(--dark);
+  font-size: clamp(65px, 9vw, 110px);
+  line-height: 0.86;
+  letter-spacing: -6px;
+  margin: 18px 0 28px;
+}
+
+.page-heading h1 span {
+  color: var(--accent-dark);
+}
+
+.page-heading > p:last-child {
+  max-width: 500px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Service Cards Grid
+   ========================================================================== */
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 330px;
+  padding: 30px;
+  padding-bottom: 65px; /* Reserve room for the bottom absolute link */
+  border: 1px solid var(--line);
+  background: transparent;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  z-index: 1;
+}
+
+/* Hover Fill Animation */
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--dark);
+  transition: width 0.35s ease;
+  z-index: -1;
+}
+
+.service-card:hover {
+  color: #ffffff;
+  transform: translateY(-7px);
+  border-color: var(--dark);
+  box-shadow: 0 18px 35px rgba(60, 48, 48, 0.15);
+}
+
+.service-card:hover::before {
+  width: 100%;
+}
+
+/* Card Header Meta */
+.service-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .service-top {
+  color: #d8bdb7;
+}
+
+.service-arrow {
+  font-size: 23px;
+}
+
+/* Card Titles & Paragraphs */
+.service-card h2 {
+  color: var(--dark);
+  font-size: 26px;
+  letter-spacing: -0.7px;
+  margin-top: 75px;
+  margin-bottom: 13px;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover h2 {
+  color: #ffffff;
+}
+
+.service-card p {
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover p {
+  color: #d8cfcc;
+}
+
+/* Card Links */
+.service-card a {
+  position: absolute;
+  bottom: 27px;
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover a {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Service Dropdown (<details> & <summary>)
+   ========================================================================== */
+
+.service-dropdown {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.service-dropdown summary {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  cursor: pointer;
+  user-select: none;
+  list-style: none; /* Hide default arrow in webkit */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+/* Custom expand indicator */
+.service-dropdown summary::after {
+  content: "＋";
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.service-dropdown[open] summary::after {
+  content: "－";
+}
+
+/* Hide default marker for Firefox */
+.service-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.service-card:hover .service-dropdown summary {
+  color: #d8bdb7;
+}
+
+/* Sub-service Bullet List */
+.service-dropdown ul {
+  margin: 12px 0 0 16px;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.service-dropdown li {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .service-dropdown li {
+  color: #e5dedc;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 750px) {
+  .services-page {
+    padding-top: 50px;
+  }
+
+  .service-list {
+    grid-template-columns: 1fr;
+  }
+
+  .page-heading h1 {
+    font-size: 70px;
+  }
+}
+
+
+.service-dropdown {
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.service-dropdown summary {
+  font-weight: 500;
+  color: var(--text-color, #333);
+  padding: 0.25rem 0;
+  user-select: none;
+}
+
+.service-dropdown ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.service-dropdown li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
